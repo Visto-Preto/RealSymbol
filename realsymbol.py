@@ -1,14 +1,14 @@
 
 #!/usr/bin/python3
-
-__version__ = '0.001b'
+#coding: utf-8
+__version__ = '1.0.0'
 __author__ = 'Leonardo Sousa'
-_change_log = ''
 
 class Real():
 
-    def __init__(self):
-        pass
+    def __init__():
+        print(__version__)
+        print(__author__)
 
     def string_to_f(x):
         # metodo para converte os formato real strings em float para calculos
@@ -30,12 +30,14 @@ class Real():
             return float(c)
 
     def float_to_s(x):
-        # função que add o Cifrao R$ no valor
+        # funcao que add o Cifrao R$ no valor
 
         s = str(x)[0:1]
 
         if type(x) == float:
             x = str('{:.2f}'.format(x))
+        elif type(x) == int:
+            x = str(x)
         c = ''
         for i in x:
             if i == '.':
@@ -216,7 +218,8 @@ class Real():
         return c
 
     def add_number(x, y):
-
+        if str(x)[0:3] == ' R$' or str(x)[0:3] == '-R$':
+            x = Real.string_to_f(x)
         x = str('{:.2f}'.format(x))
         c = ''
         for i in x:
@@ -232,7 +235,8 @@ class Real():
         return Real.float_to_s(x)
 
     def del_number(x):
-
+        if str(x)[0:3] == ' R$' or str(x)[0:3] == '-R$':
+            x = Real.string_to_f(x)
         x = str('{:.2f}'.format(x))
         c = ''
         for i in x:
@@ -254,16 +258,4 @@ class Real():
         else:
             x = x[:-1]
         
-        return (x)
-
-
-
-
-a = 456465464640.15
-b = -0.05
-bb = 195.45
-c = ' R$ 200,15'
-d = '-R$ 4.100.100,15'   
-
-
-print( Real.float_to_s( Real.del_number(b) ) )
+        return Real.float_to_s(x)
