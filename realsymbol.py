@@ -9,8 +9,10 @@ class Real():
 
     def __init__(self):
         pass
+
     def string_to_f(x):
         # metodo para converte os formato real strings em float para calculos
+
         s = x[0:1]
         x = list(x)[4:]
         c = ''
@@ -28,9 +30,10 @@ class Real():
             return float(c)
 
     def float_to_s(x):
-        # função que add os caracters em R$ no valor
+        # função que add o Cifrao R$ no valor
 
         s = str(x)[0:1]
+
         if type(x) == float:
             x = str('{:.2f}'.format(x))
         c = ''
@@ -225,18 +228,41 @@ class Real():
         x += str(y)
         if x[0] == '0':
             x = list(x[1:])
-            x = Real.float_to_s( x )
-        return x 
 
+        return Real.float_to_s(x)
+
+    def del_number(x):
+
+        x = str('{:.2f}'.format(x))
+        c = ''
+        for i in x:
+            if i == '.':
+                pass
+            else:
+                c += i
+        x = c
+
+        if len(x) == 4 and x[0] == '-':
+            x = ('-0' + x[:-1])
+
+
+        elif len(x) == 3:
+            x = ('0'+ x[:-1])
+
+            
+        else:
+            x = x[:-1]
+        
+        return (x)
 
 
 
 
 a = 456465464640.15
-b = -11.15
-aa = 195.45
+b = -0.05
+bb = 195.45
 c = ' R$ 200,15'
 d = '-R$ 4.100.100,15'   
 
 
-print( Real.string_to_f(d) )
+print( Real.float_to_s( Real.del_number(b) ) )
