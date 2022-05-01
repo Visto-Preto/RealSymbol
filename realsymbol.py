@@ -38,6 +38,16 @@ class Real():
             x = str('{:.2f}'.format(x))
         elif type(x) == int:
             x = str(x)
+            if len(x) == 2:
+                x = ('0.' + x)
+            elif len(x) == 1:
+                x = ('0.0' + x)
+        elif type(x) == str:
+            if len(x) == 2:
+                x = ('0.' + x)
+            elif len(x) == 1:
+                x = ('0.0' + x)
+                
         c = ''
         for i in x:
             if i == '.':
@@ -259,3 +269,24 @@ class Real():
             x = x[:-1]
         
         return Real.float_to_s(x)
+
+    def del_caracter(x):
+        c = ''
+
+        for i in x:
+            if i == '.':
+                pass
+            elif i == ',':
+                pass
+            elif i == ' ':
+                pass
+            elif i == 'R':
+                pass
+            elif i == '$':
+                pass
+            else:
+                c += i
+        if c[0] == '0':
+            c = c[1:]
+            
+        return  Real.float_to_s (c)
